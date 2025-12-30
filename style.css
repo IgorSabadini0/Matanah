@@ -1,0 +1,363 @@
+/* --- 1. Variáveis e Reset (Base do Design System) --- */
+:root {
+    /* Paleta de Cores - Estilo Vivara/Joalheria */
+    --bg-body: #FAFAFA;
+    /* Off-white muito claro */
+    --bg-card: #FFFFFF;
+    /* Branco puro para destaque */
+    --gold-primary: #dab063;
+    /* Dourado Nobre */
+    --gold-hover: #c29b54;
+    /* Dourado um pouco mais escuro para hover */
+    --text-main: #979797;
+    /* Cinza Chumbo */
+    --text-light: #666666;
+    /* Cinza Suave para descrições */
+    /* Tipografia */
+    --font-title: 'Playfair Display', serif;
+    --font-body: 'Montserrat', sans-serif;
+    /* Espaçamento e Layout */
+    --container-width: 1200px;
+    --header-height: 80px;
+    --transition-slow: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    /* Curva de animação suave */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* --- 2. Tipografia Utilitária --- */
+h1,
+h2,
+h3 {
+    font-family: var(--font-title);
+    font-weight: 400;
+    /* Títulos finos são mais elegantes */
+    letter-spacing: 0.5px;
+}
+
+.gold-text {
+    color: var(--gold-primary);
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* --- 3. Header & Navegação --- */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: var(--header-height);
+    background-color: rgba(250, 250, 250, 0.95);
+    /* Leve transparência */
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(197, 160, 89, 0.1);
+    transition: var(--transition-slow);
+}
+
+.logo-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--font-title);
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    color: var(--text-main);
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.logo-hebrew {
+    font-family: var(--font-title);
+    font-size: 0.7rem;
+    color: var(--gold-primary);
+    margin-top: -2px;
+    letter-spacing: 1px;
+}
+
+/* --- 4. Hero Section --- */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px;
+    position: relative;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3)),
+        url('https://images.unsplash.com/photo-1602523961358-f9f03dd557db?q=80&w=1920&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    /* Parallax simples */
+}
+
+.hero-content {
+    max-width: 800px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 1.2s ease-out forwards;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-main);
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    margin-bottom: 2rem;
+    font-weight: 300;
+}
+
+/* Botão Principal Estilo "Ghost" (Borda Dourada) */
+.btn-luxury {
+    display: inline-block;
+    padding: 12px 35px;
+    border: 1px solid var(--gold-primary);
+    color: var(--gold-primary);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    transition: var(--transition-slow);
+    background: transparent;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-luxury:hover {
+    background: linear-gradient(45deg, #ae8625, #e0da7d, #d2ac47, #edc967);
+    color: #FFFFFF;
+    box-shadow: 0 5px 15px rgba(197, 160, 89, 0.2);
+}
+
+/* --- 5. Seção de Conceito --- */
+.concept {
+    padding: 100px 20px;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.concept h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+/* Detalhe decorativo abaixo do título */
+.concept h2::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background-color: var(--gold-primary);
+    margin: 15px auto 0;
+}
+
+.concept p {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+/* --- 6. Grid de Produtos --- */
+.products {
+    padding: 50px 20px 100px;
+    max-width: var(--container-width);
+    margin: 0 auto;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.product-card {
+    background-color: var(--bg-card);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    /* Borda ultra sutil */
+    transition: var(--transition-slow);
+    cursor: pointer;
+    opacity: 0;
+    /* Para animação de scroll */
+    transform: translateY(30px);
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+}
+
+.card-image-container {
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+    position: relative;
+}
+
+.card-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.product-card:hover .card-image-container img {
+    transform: scale(1.05);
+    /* Zoom lento na imagem */
+}
+
+.card-info {
+    padding: 25px;
+    text-align: center;
+}
+
+.card-info h3 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    color: var(--text-main);
+}
+
+.card-info p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 15px;
+    font-style: italic;
+    font-family: var(--font-title);
+}
+
+.price {
+    display: block;
+    margin-bottom: 20px;
+    font-weight: 500;
+    color: var(--text-main);
+}
+
+.btn-whatsapp-sm {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border: 1px solid var(--gold-primary);
+    color: var(--gold-primary);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: var(--transition-slow);
+    width: 100%;
+}
+
+.btn-whatsapp-sm:hover {
+    background: linear-gradient(45deg, #ae8625, #e0da7d, #d2ac47, #edc967);
+    color: #FFFFFF;
+}
+
+/* --- 7. Footer --- */
+footer {
+    background-color: #F5F5F5;
+    /* Cinza levemente mais escuro que o body */
+    padding: 60px 20px;
+    text-align: center;
+    border-top: 1px solid rgba(197, 160, 89, 0.2);
+}
+
+.footer-logo {
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    display: block;
+    color: var(--text-main);
+}
+
+.social-links {
+    margin: 20px 0;
+}
+
+.social-links a {
+    color: var(--text-light);
+    font-size: 1.5rem;
+    margin: 0 10px;
+    transition: var(--transition-slow);
+    text-decoration: none;
+}
+
+.social-links a:hover {
+    color: var(--gold-primary);
+}
+
+.copyright {
+    font-size: 0.8rem;
+    color: #999;
+    margin-top: 30px;
+}
+
+/* --- 8. Animations (Keyframes) --- */
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Classe utilitária para Javascript adicionar */
+.reveal-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* --- 9. Responsividade --- */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .concept h2 {
+        font-size: 2rem;
+    }
+
+    .grid-container {
+        grid-template-columns: 1fr;
+        padding: 0 20px;
+    }
+
+    .card-image-container {
+        height: 300px;
+    }
+}
